@@ -1,0 +1,78 @@
+﻿@model IEnumerable<WebRole1.Models.Usuario>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@{ 
+    var a = Model.Count();
+    string ModelTitle()
+    {        
+    if(a <= 1)
+    {
+      return  ViewBag.MessageNumber = "Usuario Registrado";
+    }
+    else
+    {
+      return  ViewBag.MessageNumber = "Usuarios Registrados";
+    }
+    }
+}
+
+<h2 class="text-capitalize mr-2">@ModelTitle()<span class="icon-user-2">@a</span> </h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.User_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.User_pass)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.User_repass)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.User_token)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.User_Imagen)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.User_status)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.User_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.User_pass)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.User_repass)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.User_token)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.User_Imagen)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.User_status)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id_user }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id_user }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id_user })
+        </td>
+    </tr>
+}
+
+</table>

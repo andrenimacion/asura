@@ -1,0 +1,149 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Administrador">
+    <Key>
+      <PropertyRef Name="Id_admin" />
+    </Key>
+    <Property Name="Id_admin" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name_adm" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="status" Type="Int32" />
+    <NavigationProperty Name="Canals" Relationship="Self.FK__Canal__Id_admin__2B3F6F97" FromRole="Administrador" ToRole="Canal" />
+  </EntityType>
+  <EntityType Name="Canal">
+    <Key>
+      <PropertyRef Name="Id_canal" />
+      <PropertyRef Name="Id_admin" />
+      <PropertyRef Name="Id_user" />
+    </Key>
+    <Property Name="Id_canal" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre_canal" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Seg_canal" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="token_canal" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Id_admin" Type="Int32" Nullable="false" />
+    <Property Name="Id_user" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Administrador" Relationship="Self.FK__Canal__Id_admin__2B3F6F97" FromRole="Canal" ToRole="Administrador" />
+    <NavigationProperty Name="Usuario" Relationship="Self.FK__Canal__Id_user__2A4B4B5E" FromRole="Canal" ToRole="Usuario" />
+    <NavigationProperty Name="Mensajes" Relationship="Self.FK__Mensaje__2C3393D0" FromRole="Canal" ToRole="Mensaje" />
+  </EntityType>
+  <EntityType Name="Mensaje">
+    <Key>
+      <PropertyRef Name="Id_mensaje" />
+      <PropertyRef Name="Id_canal" />
+      <PropertyRef Name="Id_admin" />
+      <PropertyRef Name="Id_user" />
+    </Key>
+    <Property Name="Id_mensaje" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Id_canal" Type="Int32" Nullable="false" />
+    <Property Name="Id_admin" Type="Int32" Nullable="false" />
+    <Property Name="Id_user" Type="Int32" Nullable="false" />
+    <Property Name="Title_mensaje" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="sub_title_men" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="cont_men" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Date_men" Type="Binary" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+    <Property Name="Show_men" Type="Int32" />
+    <Property Name="Img_men" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Canal" Relationship="Self.FK__Mensaje__2C3393D0" FromRole="Mensaje" ToRole="Canal" />
+  </EntityType>
+  <EntityType Name="Usuario">
+    <Key>
+      <PropertyRef Name="Id_user" />
+    </Key>
+    <Property Name="Id_user" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="User_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="User_pass" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="User_repass" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="User_token" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="User_Imagen" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="User_status" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Canals" Relationship="Self.FK__Canal__Id_user__2A4B4B5E" FromRole="Usuario" ToRole="Canal" />
+    <Property Name="User_email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <Association Name="FK__Canal__Id_admin__2B3F6F97">
+    <End Role="Administrador" Type="Self.Administrador" Multiplicity="1" />
+    <End Role="Canal" Type="Self.Canal" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Administrador">
+        <PropertyRef Name="Id_admin" />
+      </Principal>
+      <Dependent Role="Canal">
+        <PropertyRef Name="Id_admin" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Canal__Id_user__2A4B4B5E">
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+    <End Role="Canal" Type="Self.Canal" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="Id_user" />
+      </Principal>
+      <Dependent Role="Canal">
+        <PropertyRef Name="Id_user" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Mensaje__2C3393D0">
+    <End Role="Canal" Type="Self.Canal" Multiplicity="1" />
+    <End Role="Mensaje" Type="Self.Mensaje" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Canal">
+        <PropertyRef Name="Id_canal" />
+        <PropertyRef Name="Id_admin" />
+        <PropertyRef Name="Id_user" />
+      </Principal>
+      <Dependent Role="Mensaje">
+        <PropertyRef Name="Id_canal" />
+        <PropertyRef Name="Id_admin" />
+        <PropertyRef Name="Id_user" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Database_asura" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Administradors" EntityType="Self.Administrador" />
+    <EntitySet Name="Canals" EntityType="Self.Canal" />
+    <EntitySet Name="Mensajes" EntityType="Self.Mensaje" />
+    <EntitySet Name="Usuarios" EntityType="Self.Usuario" />
+    <AssociationSet Name="FK__Canal__Id_admin__2B3F6F97" Association="Self.FK__Canal__Id_admin__2B3F6F97">
+      <End Role="Administrador" EntitySet="Administradors" />
+      <End Role="Canal" EntitySet="Canals" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Canal__Id_user__2A4B4B5E" Association="Self.FK__Canal__Id_user__2A4B4B5E">
+      <End Role="Usuario" EntitySet="Usuarios" />
+      <End Role="Canal" EntitySet="Canals" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Mensaje__2C3393D0" Association="Self.FK__Mensaje__2C3393D0">
+      <End Role="Canal" EntitySet="Canals" />
+      <End Role="Mensaje" EntitySet="Mensajes" />
+    </AssociationSet>
+    <FunctionImport Name="g_user_by_param_id" ReturnType="Collection(Model.g_user_by_param_id_Result)">
+      <Parameter Name="param_fin" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="i_user">
+      <Parameter Name="Nombre" Mode="In" Type="String" />
+      <Parameter Name="Pass" Mode="In" Type="String" />
+      <Parameter Name="Repass" Mode="In" Type="String" />
+      <Parameter Name="Tok" Mode="In" Type="String" />
+      <Parameter Name="Img" Mode="In" Type="String" />
+      <Parameter Name="Sts" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="up_user">
+      <Parameter Name="Id" Mode="In" Type="Int32" />
+      <Parameter Name="Nombre" Mode="In" Type="String" />
+      <Parameter Name="Pass" Mode="In" Type="String" />
+      <Parameter Name="Repass" Mode="In" Type="String" />
+      <Parameter Name="Tok" Mode="In" Type="String" />
+      <Parameter Name="Img" Mode="In" Type="String" />
+      <Parameter Name="Sts" Mode="In" Type="String" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="g_user_by_param_id_Result">
+    <Property Type="Int32" Name="Id_user" Nullable="false" />
+    <Property Type="String" Name="User_name" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="User_pass" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="User_repass" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="User_token" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="User_Imagen" Nullable="true" MaxLength="500" />
+    <Property Type="String" Name="User_status" Nullable="true" MaxLength="20" />
+  </ComplexType>
+</Schema>

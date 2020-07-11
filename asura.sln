@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29728.190
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{CC5FD16D-436D-48AD-A40C-5A424C6E3E79}") = "asura", "asura.ccproj", "{D7563B59-A7DD-4A67-A931-8707F80B6971}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebRole1", "WebRole1\WebRole1.csproj", "{7632EA54-009A-4F39-ACB0-F9F03B113AFE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D7563B59-A7DD-4A67-A931-8707F80B6971}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7563B59-A7DD-4A67-A931-8707F80B6971}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D7563B59-A7DD-4A67-A931-8707F80B6971}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D7563B59-A7DD-4A67-A931-8707F80B6971}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7632EA54-009A-4F39-ACB0-F9F03B113AFE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7632EA54-009A-4F39-ACB0-F9F03B113AFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7632EA54-009A-4F39-ACB0-F9F03B113AFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7632EA54-009A-4F39-ACB0-F9F03B113AFE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E7773827-EEEC-499B-8FD7-AC552241B8F1}
+	EndGlobalSection
+EndGlobal

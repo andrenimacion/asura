@@ -1,0 +1,134 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Administrador">
+    <Key>
+      <PropertyRef Name="Id_admin" />
+    </Key>
+    <Property Name="Id_admin" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name_adm" Type="nvarchar" MaxLength="50" />
+    <Property Name="status" Type="int" />
+  </EntityType>
+  <EntityType Name="Canal">
+    <Key>
+      <PropertyRef Name="Id_canal" />
+      <PropertyRef Name="Id_admin" />
+      <PropertyRef Name="Id_user" />
+    </Key>
+    <Property Name="Id_canal" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre_canal" Type="nvarchar" MaxLength="100" />
+    <Property Name="Seg_canal" Type="nvarchar" MaxLength="15" />
+    <Property Name="token_canal" Type="nvarchar" MaxLength="100" />
+    <Property Name="Id_admin" Type="int" Nullable="false" />
+    <Property Name="Id_user" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Mensaje">
+    <Key>
+      <PropertyRef Name="Id_mensaje" />
+      <PropertyRef Name="Id_canal" />
+      <PropertyRef Name="Id_admin" />
+      <PropertyRef Name="Id_user" />
+    </Key>
+    <Property Name="Id_mensaje" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Id_canal" Type="int" Nullable="false" />
+    <Property Name="Id_admin" Type="int" Nullable="false" />
+    <Property Name="Id_user" Type="int" Nullable="false" />
+    <Property Name="Title_mensaje" Type="nvarchar" MaxLength="100" />
+    <Property Name="sub-title_men" Type="nvarchar" MaxLength="100" />
+    <Property Name="cont_men" Type="nvarchar" MaxLength="500" />
+    <Property Name="Date_men" Type="timestamp" StoreGeneratedPattern="Computed" />
+    <Property Name="Show_men" Type="int" />
+    <Property Name="Img_men" Type="nvarchar" MaxLength="500" />
+    <Property Name="Status" Type="nvarchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="Usuario">
+    <Key>
+      <PropertyRef Name="Id_user" />
+    </Key>
+    <Property Name="Id_user" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="User_name" Type="nvarchar" MaxLength="50" />
+    <Property Name="User_pass" Type="nvarchar" MaxLength="100" />
+    <Property Name="User_repass" Type="nvarchar" MaxLength="100" />
+    <Property Name="User_token" Type="nvarchar" MaxLength="20" />
+    <Property Name="User_Imagen" Type="nvarchar" MaxLength="500" />
+    <Property Name="User_status" Type="nvarchar" MaxLength="20" />
+    <Property Name="User_email" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <Association Name="FK__Canal__Id_admin__2B3F6F97">
+    <End Role="Administrador" Type="Self.Administrador" Multiplicity="1" />
+    <End Role="Canal" Type="Self.Canal" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Administrador">
+        <PropertyRef Name="Id_admin" />
+      </Principal>
+      <Dependent Role="Canal">
+        <PropertyRef Name="Id_admin" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Canal__Id_user__2A4B4B5E">
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+    <End Role="Canal" Type="Self.Canal" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="Id_user" />
+      </Principal>
+      <Dependent Role="Canal">
+        <PropertyRef Name="Id_user" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Mensaje__2C3393D0">
+    <End Role="Canal" Type="Self.Canal" Multiplicity="1" />
+    <End Role="Mensaje" Type="Self.Mensaje" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Canal">
+        <PropertyRef Name="Id_canal" />
+        <PropertyRef Name="Id_admin" />
+        <PropertyRef Name="Id_user" />
+      </Principal>
+      <Dependent Role="Mensaje">
+        <PropertyRef Name="Id_canal" />
+        <PropertyRef Name="Id_admin" />
+        <PropertyRef Name="Id_user" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="g_user_by_param_id" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="param_fin" Type="int" Mode="In" />
+  </Function>
+  <Function Name="i_user" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Nombre" Type="varchar" Mode="In" />
+    <Parameter Name="Pass" Type="varchar" Mode="In" />
+    <Parameter Name="Repass" Type="varchar" Mode="In" />
+    <Parameter Name="Tok" Type="varchar" Mode="In" />
+    <Parameter Name="Img" Type="varchar" Mode="In" />
+    <Parameter Name="Sts" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="up_user" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Id" Type="int" Mode="In" />
+    <Parameter Name="Nombre" Type="varchar" Mode="In" />
+    <Parameter Name="Pass" Type="varchar" Mode="In" />
+    <Parameter Name="Repass" Type="varchar" Mode="In" />
+    <Parameter Name="Tok" Type="varchar" Mode="In" />
+    <Parameter Name="Img" Type="varchar" Mode="In" />
+    <Parameter Name="Sts" Type="varchar" Mode="In" />
+  </Function>
+  <EntityContainer Name="ModelStoreContainer">
+    <EntitySet Name="Administrador" EntityType="Self.Administrador" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Canal" EntityType="Self.Canal" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Mensaje" EntityType="Self.Mensaje" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Canal__Id_admin__2B3F6F97" Association="Self.FK__Canal__Id_admin__2B3F6F97">
+      <End Role="Administrador" EntitySet="Administrador" />
+      <End Role="Canal" EntitySet="Canal" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Canal__Id_user__2A4B4B5E" Association="Self.FK__Canal__Id_user__2A4B4B5E">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="Canal" EntitySet="Canal" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Mensaje__2C3393D0" Association="Self.FK__Mensaje__2C3393D0">
+      <End Role="Canal" EntitySet="Canal" />
+      <End Role="Mensaje" EntitySet="Mensaje" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

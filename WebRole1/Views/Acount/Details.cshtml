@@ -1,0 +1,66 @@
+﻿@model WebRole1.Models.Usuario
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Usuario</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.User_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.User_pass)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User_pass)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.User_repass)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User_repass)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.User_token)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User_token)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.User_Imagen)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User_Imagen)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.User_status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User_status)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id_user }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

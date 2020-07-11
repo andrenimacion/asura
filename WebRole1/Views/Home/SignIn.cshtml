@@ -1,0 +1,36 @@
+﻿<div class=" logCont animated fadeInDownBig fast">
+
+    <div class="titles text-right p-4">
+        <h1>SignUp!</h1>
+        <h5 class="rapidNote">
+            <span class="icon-ok-3"></span>  @ViewBag.SignMesage
+        </h5>
+    </div>
+
+    <div class="form p-4 animated fadeIn">
+        <form>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Email address</label>
+                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
+                @*<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>*@
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Password</label>
+                <input type="password" class="form-control" id="exampleInputPassword1">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputRePassword1">Password</label>
+                <input type="password" class="form-control" id="exampleInputRePassword1">
+            </div>
+            @*<div class="form-group form-check">
+           <input type="checkbox" class="form-check-input" id="exampleCheck1" required>
+           <label class="form-check-label" for="exampleCheck1">Check me out</label>
+        </div>*@
+            <button type="submit" class="btn btn-primary"><span class="icon-accessibility"></span>  Ingresar</button>
+        </form>
+        <div class="eye">
+            <span class="icon-ok-2"></span> Si ya tienes una cuenta, Logeate @Html.ActionLink("Aquí", "Login", "Home") 
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,42 @@
+﻿.logCont {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /*background-color: black;*/
+    width: 100% !important;
+    margin-top: 15px;
+    padding: 25px;
+}
+
+.form {
+    width: 50%;
+    display: flex !important;
+    justify-content: flex-start;
+    align-items: flex-start;
+    border-left: solid 0.5px yellowgreen;
+    flex-direction: column;
+    padding: 25px;
+}
+form{
+    width: 90%;
+
+}
+
+.titles{
+    padding: 15px;
+    color: yellowgreen;
+}
+
+.rapidNote{
+    color: gray;
+    width:180px;
+}
+
+.eye{
+    margin-top: 25px;
+    text-align: left;
+}
+
+input{
+    border-bottom: solid 0.5px gray;
+}

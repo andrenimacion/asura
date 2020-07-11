@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="Database_asura">
+    <EntitySetMapping Name="Administradors">
+      <EntityTypeMapping TypeName="Model.Administrador">
+        <MappingFragment StoreEntitySet="Administrador">
+          <ScalarProperty Name="Id_admin" ColumnName="Id_admin" />
+          <ScalarProperty Name="name_adm" ColumnName="name_adm" />
+          <ScalarProperty Name="status" ColumnName="status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Canals">
+      <EntityTypeMapping TypeName="Model.Canal">
+        <MappingFragment StoreEntitySet="Canal">
+          <ScalarProperty Name="Id_canal" ColumnName="Id_canal" />
+          <ScalarProperty Name="Nombre_canal" ColumnName="Nombre_canal" />
+          <ScalarProperty Name="Seg_canal" ColumnName="Seg_canal" />
+          <ScalarProperty Name="token_canal" ColumnName="token_canal" />
+          <ScalarProperty Name="Id_admin" ColumnName="Id_admin" />
+          <ScalarProperty Name="Id_user" ColumnName="Id_user" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Mensajes">
+      <EntityTypeMapping TypeName="Model.Mensaje">
+        <MappingFragment StoreEntitySet="Mensaje">
+          <ScalarProperty Name="Id_mensaje" ColumnName="Id_mensaje" />
+          <ScalarProperty Name="Id_canal" ColumnName="Id_canal" />
+          <ScalarProperty Name="Id_admin" ColumnName="Id_admin" />
+          <ScalarProperty Name="Id_user" ColumnName="Id_user" />
+          <ScalarProperty Name="Title_mensaje" ColumnName="Title_mensaje" />
+          <ScalarProperty Name="sub_title_men" ColumnName="sub-title_men" />
+          <ScalarProperty Name="cont_men" ColumnName="cont_men" />
+          <ScalarProperty Name="Date_men" ColumnName="Date_men" />
+          <ScalarProperty Name="Show_men" ColumnName="Show_men" />
+          <ScalarProperty Name="Img_men" ColumnName="Img_men" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Usuarios">
+      <EntityTypeMapping TypeName="Model.Usuario">
+        <MappingFragment StoreEntitySet="Usuario">
+          <ScalarProperty Name="User_email" ColumnName="User_email" />
+          <ScalarProperty Name="Id_user" ColumnName="Id_user" />
+          <ScalarProperty Name="User_name" ColumnName="User_name" />
+          <ScalarProperty Name="User_pass" ColumnName="User_pass" />
+          <ScalarProperty Name="User_repass" ColumnName="User_repass" />
+          <ScalarProperty Name="User_token" ColumnName="User_token" />
+          <ScalarProperty Name="User_Imagen" ColumnName="User_Imagen" />
+          <ScalarProperty Name="User_status" ColumnName="User_status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="g_user_by_param_id" FunctionName="Model.Store.g_user_by_param_id">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Model.g_user_by_param_id_Result">
+          <ScalarProperty Name="Id_user" ColumnName="Id_user" />
+          <ScalarProperty Name="User_name" ColumnName="User_name" />
+          <ScalarProperty Name="User_pass" ColumnName="User_pass" />
+          <ScalarProperty Name="User_repass" ColumnName="User_repass" />
+          <ScalarProperty Name="User_token" ColumnName="User_token" />
+          <ScalarProperty Name="User_Imagen" ColumnName="User_Imagen" />
+          <ScalarProperty Name="User_status" ColumnName="User_status" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="i_user" FunctionName="Model.Store.i_user" />
+    <FunctionImportMapping FunctionImportName="up_user" FunctionName="Model.Store.up_user" />
+  </EntityContainerMapping>
+</Mapping>
